@@ -64,27 +64,165 @@ This API-driven system is modular, scalable, and designed for seamless integrati
 - **API Management**: REST APIs
 
 ---
+## API Endpoints
 
-### **5. API Endpoints**
+### Ingredient Management
 
-#### **5.1 Ingredient Management**
-| Method | Endpoint               | Description                   |
-|--------|------------------------|-------------------------------|
-| POST   | `/api/ingredients/add` | Add a new ingredient          |
-| PUT    | `/api/ingredients/update` | Update existing ingredient   |
+#### 1. Add or Increment an Ingredient
+- **Route**: `/api/ingredients/add`
+- **Method**: `POST`
+- **Payload**:
+  ```json
+  {
+      "name": "Sugar",
+      "quantity": 2,
+      "unit": "kg"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+      "success": true,
+      "ingredient": {
+          "_id": "64c1234abcd567890ef12345",
+          "name": "Sugar",
+          "quantity": 5,
+          "unit": "kg",
+          "__v": 0
+      }
+  }
+  ```
 
-#### **5.2 Recipe Management**
-| Method | Endpoint               | Description                   |
-|--------|------------------------|-------------------------------|
-| GET    | `/api/recipes/parse`   | Parse recipes from text files |
-| POST   | `/api/recipes/add`     | Add a new recipe (image or text) |
+#### 2. Get All Ingredients
+- **Route**: `/api/ingredients/`
+- **Method**: `GET`
+- **Response**:
+  ```json
+  {
+      "success": true,
+      "ingredients": [
+          {
+              "_id": "64c1234abcd567890ef12345",
+              "name": "Sugar",
+              "quantity": 5,
+              "unit": "kg",
+              "__v": 0
+          },
+          {
+              "_id": "64c1234abcd567890ef67890",
+              "name": "Flour",
+              "quantity": 3,
+              "unit": "kg",
+              "__v": 0
+          }
+      ]
+  }
+  ```
 
-#### **5.3 Chatbot**
-| Method | Endpoint               | Description                            |
-|--------|------------------------|----------------------------------------|
-| POST   | `/api/chatbot/suggest` | Get recipe suggestions from chatbot    |
+#### 3. Update an Ingredient
+- **Route**: `/api/ingredients/update/:id`
+- **Method**: `PUT`
+- **Payload**:
+  ```json
+  {
+      "name": "Brown Sugar",
+      "quantity": 4,
+      "unit": "kg"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+      "success": true,
+      "ingredient": {
+          "_id": "64c1234abcd567890ef12345",
+          "name": "Brown Sugar",
+          "quantity": 4,
+          "unit": "kg",
+          "__v": 0
+      }
+  }
+  ```
 
----
+#### 4. Delete an Ingredient
+- **Route**: `/api/ingredients/delete/:id`
+- **Method**: `DELETE`
+- **Response**:
+  ```json
+  {
+      "success": true,
+      "message": "Ingredient deleted successfully"
+  }
+  ```
+
+### Recipe Management
+
+#### 1. Add a Recipe Manually
+- **Route**: `/api/recipes/add`
+- **Method**: `POST`
+- **Payload**:
+  ```json
+  {
+      "name": "Spaghetti Carbonara",
+      "ingredients": ["Spaghetti", "Eggs", "Parmesan Cheese", "Pancetta", "Pepper"],
+      "cuisine": "Italian",
+      "taste": "Savory",
+      "preparationTime": "30 minutes",
+      "instructions": "Cook spaghetti, mix with pancetta, eggs, and cheese. Add pepper to taste."
+  }
+  ```
+- **Response**:
+  ```json
+  {
+      "success": true,
+      "recipe": {
+          "_id": "64c1234abcd567890ef12345",
+          "name": "Spaghetti Carbonara",
+          "ingredients": ["Spaghetti", "Eggs", "Parmesan Cheese", "Pancetta", "Pepper"],
+          "cuisine": "Italian",
+          "taste": "Savory",
+          "preparationTime": "30 minutes",
+          "instructions": "Cook spaghetti, mix with pancetta, eggs, and cheese. Add pepper to taste.",
+          "__v": 0
+      }
+  }
+  ```
+
+#### 2. Parse Recipes from File
+- **Route**: `/api/recipes/parse`
+- **Method**: `POST`
+- **Payload**: Upload an image or text file with the key `file`
+- **Response (Image)**:
+  ```json
+  {
+      "success": true,
+      "message": "Recipe text added to my_fav_recipes.txt"
+  }
+  ```
+
+### Chatbot Integration
+
+#### 1. Chat with the Chatbot
+- **Route**: `/api/chatbot/chat`
+- **Method**: `POST`
+- **Payload**:
+  ```json
+  {
+      "query": "I want something sweet today"
+  }
+  ```
+- **Response**:
+  ```json
+  {
+      "success": true,
+      "suggestion": {
+          "title": "Pancakes",
+          "ingredients": ["Flour", "Milk", "Eggs", "Butter", "Sugar"],
+          "instructions": "Mix all ingredients and cook on a skillet."
+      }
+  }
+  ```
+
 
 ### **6. How to Run the Project**
 
