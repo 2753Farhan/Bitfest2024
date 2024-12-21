@@ -109,25 +109,3 @@ This API-driven system is modular, scalable, and designed for seamless integrati
 
 4. **Access the API**: The server will run at `http://localhost:5000`.
 
-## 7. Future Enhancements
-
-* **User Authentication**: Add user accounts for personalized recipe management.
-* **Advanced Filtering**: Enable recipe filtering by taste, cuisine, or preparation time.
-* **Integration with Shopping Apps**: Suggest missing ingredients and create shopping lists.
-
-## 8. License
-
-This project is licensed under the MIT License. See the `LICENSE` file for more details.
-
-## 9. Contributors
-
-* Your Name - GitHub Profile
-* Your Team Members (if applicable)
-
-### How to Use:
-
-1. Copy the above Markdown content into the README.md file of your project.
-2. Replace placeholders like your_cloudinary_cloud_name, yourusername, etc., with your actual values.
-3. Commit the README.md file to your repository.
-
-This structure ensures your README is visually appealing and informative on GitHub.
