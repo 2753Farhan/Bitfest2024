@@ -1,11 +1,13 @@
 import fs from "fs";
+import path from "path";
 import { ChatGroq } from "@langchain/groq";
 
 export async function chatWithBot(req, res) {
   try {
     const { query, availableIngredients } = req.body;
 
-    const recipeText = fs.readFileSync("my_fav_recipes.txt", "utf8");
+    // Correct path to the my_fav_recipes.txt file
+    const recipeText = fs.readFileSync(path.join(process.cwd(), "uploads/my_fav_recipes.txt"), "utf8");
 
     const model = new ChatGroq({
       model: "mixtral-8x7b-32768",
