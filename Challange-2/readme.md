@@ -242,6 +242,5 @@ This API-driven system is modular, scalable, and designed for seamless integrati
     ```bash
     npm start
     ```
-
 4. **Access the API**: The server will run at `http://localhost:5000`.
 
